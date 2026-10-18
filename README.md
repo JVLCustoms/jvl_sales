@@ -53,6 +53,17 @@ Texts in each player's GTA V language (es / en). Qbox, QBCore and ESX detected a
 </tr>
 </table>
 
+## 📸 Preview
+
+<div align="center">
+<table>
+<tr>
+<td align="center"><img src="assets/readme/screenshot-panel.png" alt="Sale panel with the buyer's items" width="380"><br><sub>Buyer's price list: what you have, quantity and "all"; items you don't have are dimmed</sub></td>
+<td align="center"><img src="assets/readme/screenshot-sold.png" alt="After selling: items removed and money added" width="380"><br><sub>After the sale: the item is removed and the money added (ox_inventory notifications)</sub></td>
+</tr>
+</table>
+</div>
+
 ## 🔄 How it works
 
 ```mermaid
