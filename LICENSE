@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2025 JVL Customs
+Copyright (c) 2026 JVL MediaCode
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,35 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-## Additional Terms for FiveM Usage
-
-This software is specifically designed for use with FiveM servers and the ESX framework. 
-
-### Attribution Requirements
-While not legally required under the MIT license, we kindly ask that you:
-- Keep the original author credits in the code comments
-- Mention JVL Customs if you redistribute or modify this resource
-- Share improvements back with the community when possible
-
-### Disclaimer for FiveM Servers
-This resource is provided for educational and community purposes. Server owners are responsible for:
-- Ensuring compliance with their server's terms of service
-- Testing thoroughly before deployment in production
-- Backing up their server data before installation
-- Understanding the code and its implications for their server economy
-
-### Commercial Use
-This software may be used commercially (including on paid FiveM servers) under the MIT license terms. However, we appreciate attribution and community feedback.
-
-### Support and Warranty
-This software is provided "as is" without warranty. While we strive to provide support through our community channels, we cannot guarantee compatibility with all server configurations or custom modifications.
-
-For support, please visit: https://discord.gg/9vg3bSWqM7
-
----
-
-**Thank you for using JVL Sales System!**
-

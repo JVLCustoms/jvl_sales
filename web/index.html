@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JVL Sales</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="jvl-steel-blue.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="panel" class="jvl-panel jvl-vidrio oculto">
+        <div class="jvl-brillo"></div>
+        <header class="cabecera">
+            <div class="logo" id="logo">
+                <img alt="">
+                <div class="jvl-icono" id="icono"><i class="fa-solid fa-recycle"></i></div>
+            </div>
+            <div class="titulos">
+                <div class="jvl-sub" id="titulo"></div>
+                <div class="jvl-titulo" id="comprador"></div>
+            </div>
+            <button class="cerrar" id="cerrar" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+        </header>
+        <div class="lista" id="items"></div>
+        <div class="jvl-card resumen">
+            <div><span class="jvl-etiqueta" id="total-texto"></span><b id="total"></b> <span class="jvl-sub" id="cuenta"></span></div>
+            <button class="jvl-boton" id="vender"></button>
+        </div>
+        <div class="jvl-tenue pie"><span id="version"></span><span id="pie"></span><span>&lt;/&gt; JVL MediaCode</span></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

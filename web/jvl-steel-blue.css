@@ -1,0 +1,352 @@
+/* =====================================================================
+   JVL STEEL BLUE · Standard UI style for every JVL FiveM script (v1.3.2 · 2px borders, translucent variant, compact density (translucent, no backdrop-filter))
+   Approved 2026-10-05. Mockup: jvl_steel_blue_mockup.html (same folder).
+
+   How to use in a resource:
+     1. Copy this file to the resource web folder (e.g. web/jvl-steel-blue.css).
+     2. Link it before the resource's own CSS.
+     3. Build panels with:  <div class="jvl-panel"><div class="jvl-brillo"></div> ... </div>
+        and inner cards with: <div class="jvl-card"> ... </div>
+   Only change colors through the variables below, never hardcode new blues.
+   ===================================================================== */
+
+:root {
+    /* Layers: black page -> dark panel -> lighter card -> lighter row */
+    --jvl-negro: #04070c;
+    --jvl-panel: #0a1018;
+    --jvl-card: #111a26;
+    --jvl-card-2: #16212f;
+    --jvl-borde: rgba(148, 197, 233, 0.10);
+    --jvl-borde-fuerte: rgba(148, 197, 233, 0.22);
+
+    /* Blues */
+    --jvl-marino: #0b2545;
+    --jvl-azul-profundo: #1e4f8f;
+    --jvl-azul: #0ea5e9;
+    --jvl-cian: #38bdf8;
+    --jvl-hielo: #7dd3fc;
+
+    /* Silver */
+    --jvl-plata: #cbd5e1;
+    --jvl-plata-clara: #e9eef5;
+    --jvl-plata-oscura: #8b98a9;
+
+    /* Text */
+    --jvl-texto: #eef3f9;
+    --jvl-texto-2: #9fb0c3;
+    --jvl-texto-3: #64748b;
+
+    /* States (cool tones so they sit well with the blues) */
+    --jvl-ok: #34d399;
+    --jvl-aviso: #fbbf24;
+    --jvl-error: #f87171;
+
+    /* Effects */
+    --jvl-glow: 0 18px 40px -18px rgba(14, 165, 233, 0.45);
+    --jvl-sombra: 0 24px 50px -24px rgba(0, 0, 0, 0.95);
+    --jvl-radio: 16px;
+    --jvl-radio-sm: 11px;
+    --jvl-fuente: 'Poppins', 'Segoe UI', Arial, sans-serif;
+}
+
+/* ---------------------------------------------------------------------
+   Panel: dark surface + steel sheen + top/bottom light lines
+   --------------------------------------------------------------------- */
+.jvl-panel {
+    position: relative;
+    font-family: var(--jvl-fuente);
+    color: var(--jvl-texto);
+    background:
+        radial-gradient(120% 60% at 85% -10%, rgba(233, 238, 245, 0.10), transparent 45%),
+        linear-gradient(180deg, rgba(14, 22, 33, 0.96), rgba(7, 11, 17, 0.97));
+    border: 2px solid var(--jvl-borde);
+    border-radius: var(--jvl-radio);
+    box-shadow: var(--jvl-sombra), var(--jvl-glow), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    overflow: hidden;
+}
+
+/* Top light line: navy -> blue -> silver hot spot -> cyan -> fade */
+.jvl-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 2%, var(--jvl-marino) 15%, var(--jvl-azul) 32%, var(--jvl-plata-clara) 44%, var(--jvl-cian) 55%, transparent 92%);
+    filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.8));
+    pointer-events: none;
+}
+
+/* Bottom light line: mirrored and dimmer */
+.jvl-panel::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    opacity: 0.7;
+    background: linear-gradient(90deg, transparent 8%, var(--jvl-cian) 48%, var(--jvl-plata) 60%, var(--jvl-azul-profundo) 75%, transparent 98%);
+    filter: drop-shadow(0 0 3px rgba(56, 189, 248, 0.6));
+    pointer-events: none;
+}
+
+/* Translucent variant for in-game HUD elements (notifications, progress bar, chat):
+   dark behind the text on the left, fading to see-through on the right. */
+.jvl-panel.jvl-translucido {
+    background:
+        radial-gradient(120% 60% at 85% -10%, rgba(233, 238, 245, 0.08), transparent 45%),
+        var(--jvl-fondo-translucido);
+}
+:root {
+    --jvl-fondo-translucido: linear-gradient(90deg, rgba(10, 16, 24, 0.90) 0%, rgba(10, 16, 24, 0.78) 50%, rgba(10, 16, 24, 0.45) 100%);
+}
+
+/* Reflection layer (diagonal metal band) + corner marks. Put it as the first child of every panel. */
+.jvl-brillo {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background: linear-gradient(115deg, transparent 38%, rgba(233, 238, 245, 0.045) 46%, rgba(233, 238, 245, 0.09) 50%, rgba(233, 238, 245, 0.03) 54%, transparent 62%);
+}
+.jvl-brillo::before,
+.jvl-brillo::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    pointer-events: none;
+}
+.jvl-brillo::before { /* top-left, silver */
+    top: 7px;
+    left: 7px;
+    border-top: 2px solid var(--jvl-plata);
+    border-left: 2px solid var(--jvl-plata);
+    border-top-left-radius: 5px;
+    opacity: 0.5;
+}
+.jvl-brillo::after { /* bottom-right, cyan with glow */
+    bottom: 7px;
+    right: 7px;
+    border-bottom: 2px solid var(--jvl-cian);
+    border-right: 2px solid var(--jvl-cian);
+    border-bottom-right-radius: 5px;
+    opacity: 0.8;
+    filter: drop-shadow(0 0 3px var(--jvl-cian));
+}
+
+/* ---------------------------------------------------------------------
+   Inner card (lighter black) and selected state
+   --------------------------------------------------------------------- */
+.jvl-card {
+    position: relative;
+    background: linear-gradient(180deg, var(--jvl-card-2), var(--jvl-card));
+    border: 2px solid var(--jvl-borde);
+    border-radius: var(--jvl-radio-sm);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.jvl-card.jvl-activa {
+    border-color: rgba(56, 189, 248, 0.35);
+    background: radial-gradient(80% 140% at 100% 0%, rgba(233, 238, 245, 0.08), transparent 55%), linear-gradient(180deg, #1a2738, #121c29);
+    box-shadow: 0 0 22px -10px var(--jvl-cian), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* ---------------------------------------------------------------------
+   Small pieces
+   --------------------------------------------------------------------- */
+.jvl-titulo { font-weight: 600; font-size: 15px; letter-spacing: 0.2px; }
+.jvl-sub { font-size: 11.5px; color: var(--jvl-texto-2); }
+.jvl-tenue { color: var(--jvl-texto-3); }
+
+/* Text with a silver metal gradient (big numbers, brand titles) */
+.jvl-metal {
+    background: linear-gradient(180deg, #fff 25%, var(--jvl-plata) 65%, var(--jvl-plata-oscura));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Icon box */
+.jvl-icono {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    color: var(--jvl-hielo);
+    background: linear-gradient(145deg, rgba(56, 189, 248, 0.20), rgba(11, 37, 69, 0.55));
+    border: 2px solid rgba(125, 211, 252, 0.25);
+    box-shadow: 0 0 14px -4px rgba(56, 189, 248, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+.jvl-icono.jvl-ok { color: var(--jvl-ok); background: linear-gradient(145deg, rgba(52, 211, 153, 0.18), rgba(11, 37, 69, 0.55)); border-color: rgba(52, 211, 153, 0.3); box-shadow: 0 0 14px -4px rgba(52, 211, 153, 0.6); }
+.jvl-icono.jvl-error { color: var(--jvl-error); background: linear-gradient(145deg, rgba(248, 113, 113, 0.16), rgba(11, 37, 69, 0.55)); border-color: rgba(248, 113, 113, 0.3); box-shadow: 0 0 14px -4px rgba(248, 113, 113, 0.55); }
+.jvl-icono.jvl-aviso { color: var(--jvl-aviso); background: linear-gradient(145deg, rgba(251, 191, 36, 0.16), rgba(11, 37, 69, 0.55)); border-color: rgba(251, 191, 36, 0.3); box-shadow: 0 0 14px -4px rgba(251, 191, 36, 0.55); }
+
+/* Key cap ([E], [W]...) */
+.jvl-tecla {
+    min-width: 30px;
+    height: 30px;
+    padding: 0 8px;
+    border-radius: 8px;
+    display: inline-grid;
+    place-items: center;
+    font-weight: 700;
+    font-size: 13px;
+    color: #04121f;
+    background: linear-gradient(180deg, var(--jvl-plata-clara), var(--jvl-plata));
+    box-shadow: 0 0 12px -2px var(--jvl-cian), inset 0 1px 0 #fff;
+}
+
+/* Primary button (silver) and secondary (blue glass) */
+.jvl-boton {
+    padding: 12px 16px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 13px;
+    border: 0;
+    border-radius: var(--jvl-radio-sm);
+    color: #04121f;
+    background: linear-gradient(180deg, var(--jvl-plata-clara), var(--jvl-plata) 45%, #aebccc);
+    box-shadow: 0 10px 24px -12px rgba(56, 189, 248, 0.8), inset 0 1px 0 #fff;
+    cursor: pointer;
+}
+.jvl-boton-2 {
+    padding: 10px 14px;
+    font-weight: 600;
+    font-size: 12.5px;
+    border-radius: 10px;
+    color: var(--jvl-texto);
+    background: linear-gradient(180deg, rgba(56, 189, 248, 0.18), rgba(14, 165, 233, 0.06));
+    border: 2px solid rgba(56, 189, 248, 0.35);
+    box-shadow: 0 0 16px -6px var(--jvl-cian), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    cursor: pointer;
+}
+
+/* Tabs / pills */
+.jvl-tab { font-size: 12px; padding: 7px 12px; border-radius: 9px; color: var(--jvl-texto-2); border: 2px solid transparent; }
+.jvl-tab.jvl-activa { color: var(--jvl-texto); background: linear-gradient(180deg, rgba(56, 189, 248, 0.18), rgba(14, 165, 233, 0.06)); border-color: rgba(56, 189, 248, 0.35); box-shadow: 0 0 16px -6px var(--jvl-cian), inset 0 1px 0 rgba(255, 255, 255, 0.12); }
+.jvl-pastilla { font-size: 10.5px; padding: 5px 10px; border-radius: 999px; color: var(--jvl-hielo); background: rgba(14, 165, 233, 0.12); border: 2px solid rgba(56, 189, 248, 0.3); }
+
+/* Progress track + fill with silver pearl */
+.jvl-pista {
+    position: relative;
+    height: 8px;
+    border-radius: 99px;
+    background: rgba(4, 7, 12, 0.9);
+    border: 2px solid var(--jvl-borde);
+}
+.jvl-relleno {
+    position: absolute;
+    inset: 0 auto 0 0;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--jvl-marino), var(--jvl-azul) 55%, var(--jvl-cian) 85%, var(--jvl-plata-clara));
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.75);
+}
+.jvl-relleno::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    width: 14px;
+    height: 14px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #fff, var(--jvl-plata) 55%, #8aa0b8);
+    box-shadow: 0 0 12px var(--jvl-cian), 0 0 2px #fff;
+}
+
+/* ---------------------------------------------------------------------
+   COMPACT DENSITY (v1.3.0) · tight cards, small but readable type
+   Opt-in classes, nothing above changes. Use for calendars, shops,
+   inventories, level/item grids: many cards close together.
+   Spacing scale: 4 / 6 / 8 / 12 px. Type scale: 9.5 / 11 / 13 / 15 px.
+   --------------------------------------------------------------------- */
+:root {
+    --jvl-gap-xs: 4px;
+    --jvl-gap-sm: 6px;
+    --jvl-gap: 8px;
+    --jvl-pad-sm: 8px;
+    --jvl-pad: 12px;
+    /* Compact cards are slightly see-through so the game shows behind the UI */
+    --jvl-card-vidrio: linear-gradient(180deg, rgba(22, 33, 47, 0.72), rgba(17, 26, 38, 0.64));
+}
+
+/* Glass panel: translucent version of .jvl-panel for full panels over the game.
+   Never add backdrop-filter here or anywhere in NUI: FiveM CEF draws it as a black box. */
+.jvl-panel.jvl-vidrio {
+    background:
+        radial-gradient(120% 60% at 85% -10%, rgba(233, 238, 245, 0.08), transparent 45%),
+        linear-gradient(180deg, rgba(14, 22, 33, 0.80), rgba(7, 11, 17, 0.84));
+}
+
+/* Grids: small cells (days, levels) and item cards (weapons, products) */
+.jvl-rejilla-mini { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: var(--jvl-gap-sm); }
+.jvl-rejilla-7 { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: var(--jvl-gap-sm); }
+.jvl-rejilla-fichas { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--jvl-gap); }
+
+/* Small cell: bold value on top, 1-2 muted lines below, left aligned */
+.jvl-celda {
+    position: relative;
+    min-height: 68px;
+    padding: var(--jvl-pad-sm);
+    text-align: left;
+    background: var(--jvl-card-vidrio);
+    border: 2px solid var(--jvl-borde);
+    border-radius: var(--jvl-radio-sm);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    font-family: var(--jvl-fuente);
+    color: var(--jvl-texto);
+}
+.jvl-celda > b { display: block; font-size: 13px; font-weight: 600; line-height: 1.15; }
+.jvl-celda > span { display: block; margin-top: 3px; font-size: 9.5px; line-height: 1.35; color: var(--jvl-texto-2); }
+.jvl-celda.jvl-activa { border-color: rgba(56, 189, 248, 0.35); box-shadow: 0 0 18px -10px var(--jvl-cian), inset 0 1px 0 rgba(255, 255, 255, 0.08); }
+.jvl-celda.jvl-apagada { opacity: 0.38; filter: grayscale(0.7); }
+
+/* Item card: badge, fixed-height image, title, text, stats, action */
+.jvl-ficha {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: var(--jvl-pad);
+    background: var(--jvl-card-vidrio);
+    border: 2px solid var(--jvl-borde);
+    border-radius: var(--jvl-radio);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    font-family: var(--jvl-fuente);
+    color: var(--jvl-texto);
+}
+.jvl-ficha h3 { margin: 0 0 2px; font-size: 13px; font-weight: 600; }
+.jvl-ficha p { margin: 0; font-size: 11px; line-height: 1.45; color: var(--jvl-texto-2); }
+
+/* Image area: inner radius smaller than the card radius so it reads nested */
+.jvl-visual {
+    height: 80px;
+    margin-bottom: var(--jvl-gap);
+    border-radius: var(--jvl-radio-sm);
+    border: 2px solid var(--jvl-borde);
+    background: radial-gradient(circle at 50% 40%, rgba(56, 189, 248, 0.12), transparent 60%), rgba(4, 7, 12, 0.40);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+.jvl-visual img { max-width: 80%; max-height: 80%; object-fit: contain; }
+
+/* Label (small caps, muted) + value (white, bold): the key to dense but readable */
+.jvl-etiqueta { display: block; font-size: 9.5px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--jvl-texto-3); }
+.jvl-valor { display: block; font-size: 12px; font-weight: 600; color: var(--jvl-texto); }
+
+/* Two-column stat boxes */
+.jvl-stats { display: grid; grid-template-columns: 1fr 1fr; gap: var(--jvl-gap-sm); margin: var(--jvl-gap) 0; }
+.jvl-stats > div { padding: 6px 8px; border-radius: 9px; background: rgba(4, 7, 12, 0.32); border: 2px solid var(--jvl-borde); }
+
+/* Small pill badge and small button */
+.jvl-insignia { display: inline-flex; align-self: flex-start; margin-bottom: var(--jvl-gap-sm); padding: 3px 8px; border-radius: 99px; font-size: 9.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--jvl-hielo); background: rgba(14, 165, 233, 0.10); border: 2px solid rgba(56, 189, 248, 0.28); }
+.jvl-boton-sm { padding: 7px 11px; font-size: 11px; border-radius: 9px; }
+.jvl-fila { display: flex; align-items: center; justify-content: space-between; gap: var(--jvl-gap); margin-top: auto; padding-top: var(--jvl-gap); }
+
+/* Thin level/progress segments */
+.jvl-segmentos { display: flex; gap: 3px; margin: var(--jvl-gap-sm) 0 0; }
+.jvl-segmentos i { flex: 1; height: 4px; border-radius: 99px; background: rgba(255, 255, 255, 0.07); }
+.jvl-segmentos i.on { background: linear-gradient(90deg, var(--jvl-azul), var(--jvl-cian)); box-shadow: 0 0 6px rgba(56, 189, 248, 0.5); }

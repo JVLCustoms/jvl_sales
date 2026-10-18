@@ -1,0 +1,7 @@
+# Internal notes for the JVL dev environment (not part of the resource)
+AGENTS.md
+CLAUDE.md
+*.bak
+.vscode/
+Thumbs.db
+desktop.ini
