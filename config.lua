@@ -30,6 +30,7 @@ Config.Items = {
     { item = 'estetoscopio', price = 150 },
     { item = 'empty_bottle', price = 10 },
     { item = 'mustard', price = 5 },
+    { item = 'gift_opened', price = 100 },
 }
 
 -- Buyers. items = optional list of item names this buyer accepts (nil = every item above)
