@@ -151,6 +151,6 @@ Released under the **MIT License** — free to use, modify and share, keeping th
 
 Made by **[JVL MediaCode](https://jvlmediacode.com)** · Jose M. Valenzuela · Meoqui, Chihuahua, México
 
-<sub><a href="mailto:contacto@jvlmediacode.com">contacto@jvlmediacode.com</a> · <a href="https://discord.gg/m2spgxkPfj">Discord</a></sub>
+<sub><a href="mailto:contacto@jvlmediacode.com">contacto@jvlmediacode.com</a> · <a href="https://discord.gg/sFmCU8bGuj">Discord</a></sub>
 
 </div>
